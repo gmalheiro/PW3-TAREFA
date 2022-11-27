@@ -1,7 +1,5 @@
-/* IMPORT DO SEQUELIZE */
 const Sequelize = require('sequelize');
 
-/* IMPORT DA CONEXÃO */
 const connection = require('../database/database');
 
 const Carros = connection.define(
