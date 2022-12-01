@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs')  %>
+
+    <title>LISTAGEM DE CARROS</title>
+
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <%- include('../partials/menu.ejs')  %>
+
+        <div class="card mt-2">
+            <div class="card-header">LISTAGEM DE CARROS</div>
+        </div>
+
+        <%
+            carros.forEach(carro=>{
+        %>
+
+            <div class="card mt-2">
+
+                <div class="card-body">
+                    <%= carro.nome_carro %>
+                </div>
+
+                <a href="/formEdicaoCarros/<%= carro.id %>" class="btn btn-success mt-1">EDITAR</a>
+                <a href="/deletarCarro/<%= carro.id %>" class="btn btn-danger mt-1">EXCLUIR</a>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</body>
+
+<%- include('../partials/footer.ejs')  %>

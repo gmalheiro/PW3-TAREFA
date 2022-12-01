@@ -1,0 +1,32 @@
+<%- include('../partials/header.ejs')  %>
+
+<title>CADASTRO DE CARROS </title>
+
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <%- include('../partials/menu.ejs') %>
+
+        <div class="card mt-2">
+            <div class="card-header">CADASTRO DE CARROS</div>
+        </div>
+
+        <div class="card-body">
+            <form action="http://localhost:3000/inserirCarro" method="post">
+                
+                <label for="">CARRO</label>
+                <input type="text" class="form-control" 
+                        name="nome_carro" id="nome_carro"
+                        placeholder="DIGITE UM CARRO">
+                
+                <button class="btn btn-success mt-2">CADASTRAR</button>
+            </form>
+        </div>
+    </div>
+
+    </body>
+
+<%- include('../partials/footer.ejs')  %>

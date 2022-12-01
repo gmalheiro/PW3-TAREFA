@@ -2,11 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const modelCarro = require('../model/carrosModel');
+const modelCarros = require('../model/carrosModel');
 
-router.get('listarCarro', (req, res)=>{
+router.get('/listarCarros', (req, res)=>{
 
-    modelCarro.findAll()
+    modelCarros.findAll()
         .then(
             (carros)=>{
                 return res.status(200).json(carros);
@@ -15,7 +15,7 @@ router.get('listarCarro', (req, res)=>{
             (erro)=>{
                 return res.status(400).json({
                     erroStatus: true,
-                    erroMessagem: 'Houve um erro ao selecionar os dados de carro',
+                    erroMessagem: 'Houve um erro ao selecionar os dados do carro',
                     erroBancoDados: erro
                 });
             }
@@ -23,11 +23,11 @@ router.get('listarCarro', (req, res)=>{
 
 });
 
-router.get('listarCarro/:id',(req, res)=>{
+router.get('/listarCarro/:id',(req, res)=>{
 
     let {id} = req.params;
 
-    modelCarro.findByPk(id)
+    modelCarros.findByPk(id)
         .then(
             (carro)=>{
                 res.status(200).json(carro);
@@ -36,7 +36,7 @@ router.get('listarCarro/:id',(req, res)=>{
             (erro)=>{
                 return res.status(400).json({
                     erroStatus: true,
-                    erroMessagem: 'Houve um erro ao selecionar os dados de carro',
+                    erroMessagem: 'Houve um erro ao selecionar os dados do carro',
                     erroBancoDados: erro
                 });
             }
@@ -45,23 +45,21 @@ router.get('listarCarro/:id',(req, res)=>{
 });
 
 router.post('/inserirCarro', (req, res)=>{
-    let {nome_carro} = req.body;
-    console.log(nome_carro);
-    
-    modelCarro.create(
+    let {nome_carro}  = req.body ;
+    modelCarros.create(
         {nome_carro}
     ).then(
         ()=>{
                 return res.status(201).json({
                     erroStatus: false,
-                    menssagemStatus: 'carro inserida com sucesso!'
+                    menssagemStatus: 'Carro inserido com sucesso!'
             });
         }
     ).catch(
         (erro)=>{
                     return res.status(400).json({
                         erroStatus: true,
-                        erroMessagem: 'Houve um erro ao cadastrar a carro',
+                        erroMessagem: 'Houve um erro ao cadastrar o carro',
                         erroBancoDados: erro
                     });
         }
@@ -69,25 +67,25 @@ router.post('/inserirCarro', (req, res)=>{
 
 });
 
-router.put('alterarCarro', (req, res)=>{
+router.put('/alterarCarro', (req, res)=>{
 
     let {id, nome_carro} = req.body;
 
-    modelCarro.update(
+    modelCarros.update(
         {nome_carro},
         {where:{id}}
     ).then( ()=>{
 
         return res.status(200).json({
             erroStatus: false,
-            menssagemStatus: 'carro alterada com sucesso!'
+            menssagemStatus: 'Carro alterado com sucesso!'
         });
 
     }).catch(
         (erro)=>{
                     return res.status(400).json({
                         erroStatus: true,
-                        erroMessagem: 'Houve um erro ao alterar a carro',
+                        erroMessagem: 'Houve um erro ao alterar o carro',
                         erroBancoDados: erro
                     });
         }
@@ -95,24 +93,24 @@ router.put('alterarCarro', (req, res)=>{
 
 });
 
-router.delete('/excluircarro/:id', (req, res)=>{
+router.delete('/excluirCarro/:id', (req, res)=>{
 
     let {id} = req.params;
 
-    modelCarro.destroy(
+    modelCarros.destroy(
         {where: {id}}
     ).then( ()=>{
 
         return res.status(200).json({
             erroStatus: false,
-            menssagemStatus: 'carro excluida com sucesso!'
+            menssagemStatus: 'Carro excluido com sucesso!'
         });
 
     }).catch(
         (erro)=>{
                     return res.status(400).json({
                         erroStatus: true,
-                        erroMessagem: 'Houve um erro ao excluir a carro',
+                        erroMessagem: 'Houve um erro ao excluir o carro',
                         erroBancoDados: erro
                     });
         }

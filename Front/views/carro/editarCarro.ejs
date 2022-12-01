@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs')  %>
+
+<title>EDIÇÃO DE CARROS </title>
+
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <%- include('../partials/menu.ejs') %>
+
+        <div class="card mt-2">
+            <div class="card-header">EDIÇÃO DE CATEGORIAS</div>
+        </div>
+
+        <div class="card-body">
+            <form action="http://localhost:3001/alterarCarro" method="post">
+                
+                <label for="">CARRO</label>
+
+                <input
+                    type="hidden"
+                    name="id" id="id"
+                    value="<%= carro.id %>"/>
+
+                <input type="text" class="form-control" 
+                        name="nome_carro" id="nome_carro"
+                        placeholder="DIGITE UM CARRO"
+                        value="<%= carro.nome_carro %>">
+                
+                <button class="btn btn-success mt-2">EDITAR</button>
+            </form>
+        </div>
+    </div>
+
+    </body>
+
+<%- include('../partials/footer.ejs')  %>
